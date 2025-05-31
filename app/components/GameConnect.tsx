@@ -43,12 +43,7 @@ export function GameConnect() {
       {!isConnected ? (
         <ConnectButton />
       ) : isAlive ? (
-        <Stack gap={4}>
-          <Text fontSize="xl" fontWeight="bold">
-            You're in the game!
-          </Text>
-          <Text>Current stake: {playerStake?.toString()} MON</Text>
-        </Stack>
+        <></>
       ) : (
         <Button
           size="lg"
