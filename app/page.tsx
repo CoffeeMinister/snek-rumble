@@ -1,103 +1,223 @@
-import Image from "next/image";
+'use client'
+
+import {
+  Box,
+  Button,
+  Container,
+  Flex,
+  Grid,
+  Heading,
+  Text,
+  VStack,
+  HStack,
+} from '@chakra-ui/react'
+import { keyframes } from '@emotion/react'
+import { useRouter } from 'next/navigation';
+
+const pulse = keyframes`
+  0% { transform: scale(1); opacity: 0.2; }
+  50% { transform: scale(1.1); opacity: 0.4; }
+  100% { transform: scale(1); opacity: 0.2; }
+`
 
 export default function Home() {
+  const router = useRouter();
+  
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
+    <Box minH="100vh" bg="black">
+      {/* Hero Section */}
+      <Box
+        as="section"
+        position="relative"
+        h="100vh"
+        display="flex"
+        alignItems="center"
+        justifyContent="center"
+        px={{ base: 4, sm: 6, lg: 8 }}
+      >
+        <Box
+          position="absolute"
+          inset={0}
+          bgGradient="linear(to-b, purple.900/20, black)"
+          zIndex={0}
         />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+        
+        <Container maxW="4xl" position="relative" zIndex={1} textAlign="center">
+          <Heading
+            as="h1"
+            fontSize={{ base: '6xl', sm: '8xl' }}
+            fontWeight="bold"
+            bgColor="white"
+            bgClip="text"
+            minH={{ base: '48px', sm: '80px' }}
+          >
+            Snek Rumble
+          </Heading>
+          <Text
+            fontSize={{ base: 'xl', sm: '2xl' }}
+            color="gray.300"
+            mb={8}
+            maxW="2xl"
+            mx="auto"
+          >
+            Enter the world's first crypto-powered snake battle royale. 
+            Compete, collect, and conquer in this thrilling multiplayer arena.
+          </Text>
+          <Button
+            size="lg"
+            bgGradient="linear(to-r, purple.500, pink.500)"
+            _hover={{
+              bgGradient: 'linear(to-r, purple.600, pink.600)',
+              transform: 'scale(1.05)',
+            }}
+            transition="all 0.2s"
+            rounded="full"
+            px={8}
+            py={4}
+            fontSize="lg"
+            onClick={() => {
+              router.push('/arena');
+            }}
+          >
+            Enter the Arena
+          </Button>
+        </Container>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+        {/* Decorative snake elements */}
+        <HStack
+          position="absolute"
+          bottom={10}
+          left={0}
+          right={0}
+          justifyContent="center"
+          gap={4}
+          opacity={0.2}
+        >
+          <Box
+            w={16}
+            h={16}
+            borderWidth={2}
+            borderColor="purple.500"
+            rounded="full"
+            animation={`${pulse} 2s infinite`}
+          />
+          <Box
+            w={12}
+            h={12}
+            borderWidth={2}
+            borderColor="pink.500"
+            rounded="full"
+            animation={`${pulse} 2s infinite 0.5s`}
+          />
+          <Box
+            w={8}
+            h={8}
+            borderWidth={2}
+            borderColor="red.500"
+            rounded="full"
+            animation={`${pulse} 2s infinite 1s`}
+          />
+        </HStack>
+      </Box>
+
+      {/* How It Works Section */}
+      <Box
+        as="section"
+        py={20}
+        px={{ base: 4, sm: 6, lg: 8 }}
+        bgGradient="linear(to-b, black, purple.900/10)"
+      >
+        <Container maxW="6xl">
+          <Heading as="h2" fontSize="4xl" textAlign="center" mb={16}>
+            How It Works
+          </Heading>
+          <Grid
+            templateColumns={{ base: '1fr', md: 'repeat(3, 1fr)' }}
+            gap={8}
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
-  );
+            {[
+              {
+                title: '1. Connect & Deposit',
+                description: 'Connect your wallet and deposit MON tokens to enter the arena.',
+                color: 'purple.400',
+              },
+              {
+                title: '2. Battle Royale',
+                description: 'Navigate the arena, grow your snake, and outmaneuver other players.',
+                color: 'pink.400',
+              },
+              {
+                title: '3. Collect Rewards',
+                description: 'Collect glowing food from fallen players and claim their deposits.',
+                color: 'red.400',
+              },
+            ].map((step, index) => (
+              <Box
+                key={index}
+                bg="whiteAlpha.100"
+                p={6}
+                rounded="xl"
+                backdropFilter="blur(10px)"
+              >
+                <Heading
+                  as="h3"
+                  fontSize="2xl"
+                  color={step.color}
+                  mb={4}
+                >
+                  {step.title}
+                </Heading>
+                <Text color="gray.300">{step.description}</Text>
+              </Box>
+            ))}
+          </Grid>
+        </Container>
+      </Box>
+
+      {/* Leaderboard Section */}
+      <Box
+        as="section"
+        py={20}
+        px={{ base: 4, sm: 6, lg: 8 }}
+        bgGradient="linear(to-b, purple.900/10, black)"
+      >
+        <Container maxW="4xl">
+          <Heading as="h2" fontSize="4xl" textAlign="center" mb={12}>
+            Top Players
+          </Heading>
+          <Box bg="whiteAlpha.100" rounded="xl" backdropFilter="blur(10px)" p={6}>
+            <VStack gap={4}>
+              {[1, 2, 3, 4, 5].map((rank) => (
+                <Flex
+                  key={rank}
+                  w="full"
+                  justify="space-between"
+                  align="center"
+                  p={4}
+                  bg="whiteAlpha.100"
+                  rounded="lg"
+                >
+                  <HStack gap={4}>
+                    <Text fontSize="2xl" fontWeight="bold" color="purple.400">
+                      #{rank}
+                    </Text>
+                    <Box
+                      w={8}
+                      h={8}
+                      rounded="full"
+                      bgGradient="linear(to-r, purple.500, pink.500)"
+                    />
+                    <Text fontWeight="medium">Player{rank}</Text>
+                  </HStack>
+                  <Text color="purple.400" fontWeight="bold">
+                    {1000 - rank * 100} MON
+                  </Text>
+                </Flex>
+              ))}
+            </VStack>
+          </Box>
+        </Container>
+      </Box>
+    </Box>
+  )
 }
