@@ -8,7 +8,6 @@ import { WagmiProvider } from 'wagmi';
 import { getDefaultConfig } from '@rainbow-me/rainbowkit';
 import { defineChain, http } from "viem";
 import { Provider as ChakraProvider } from '@/components/ui/provider'
-import { CacheProvider } from '@chakra-ui/next-js'
 import { Toaster } from "@/components/ui/toaster";
 
 export const monad = defineChain({
@@ -54,7 +53,6 @@ export function Providers({ children }: Props) {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <CacheProvider>
         <ChakraProvider>
           <WagmiProvider config={config}>
             <RainbowKitProvider>
@@ -63,7 +61,6 @@ export function Providers({ children }: Props) {
             </RainbowKitProvider>
           </WagmiProvider>
         </ChakraProvider>
-      </CacheProvider>
     </QueryClientProvider>
   );
 }

@@ -42,7 +42,7 @@ export default function Home() {
           zIndex={0}
         />
         
-        <Container maxW="4xl" position="relative" zIndex={1} textAlign="center" min>
+        <Container maxW="4xl" position="relative" zIndex={1} textAlign="center">
           <Heading
             as="h1"
             fontSize={{ base: '6xl', sm: '8xl' }}
