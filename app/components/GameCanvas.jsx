@@ -54,7 +54,7 @@ function GameCanvasInner() {
         // Game constants
         const WORLD_SIZE = 2000;
         const FOOD_COUNT = 100;
-        const PLAYER_SPEED = 0.005;
+        const PLAYER_SPEED = 0.02;
         const BOOST_MULTIPLIER = 1.5;
         const INITIAL_LENGTH = 10;
         const FOOD_VALUE = 1;
@@ -406,7 +406,7 @@ function GameCanvasInner() {
             if (isCurrentPlayer) {
               this.ctx.fillStyle = '#000';
               this.ctx.font = 'bold 24px Arial';
-              this.ctx.fillText(`Score: ${player.score}`, 10, 30);
+              // this.ctx.fillText(`Score: ${player.score}`, 10, 30);
             }
           }
 
