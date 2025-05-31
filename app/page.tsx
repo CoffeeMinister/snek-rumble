@@ -42,14 +42,13 @@ export default function Home() {
           zIndex={0}
         />
         
-        <Container maxW="4xl" position="relative" zIndex={1} textAlign="center">
+        <Container maxW="4xl" position="relative" zIndex={1} textAlign="center" min>
           <Heading
             as="h1"
             fontSize={{ base: '6xl', sm: '8xl' }}
             fontWeight="bold"
-            bgColor="white"
-            bgClip="text"
-            minH={{ base: '48px', sm: '80px' }}
+            color="white"
+            minH={{ base: '140px', sm: '140px' }}
           >
             Snek Rumble
           </Heading>
